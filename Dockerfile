@@ -15,14 +15,32 @@ FROM php:8.3-apache
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     libpq-dev \
-    && docker-php-ext-install pdo_pgsql
+    libicu-dev \
+    netcat-openbsd \
+    && docker-php-ext-install pdo_pgsql intl
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
 # Copy PHP application from build
 COPY --from=build /app/vendor /var/www/html/vendor
+COPY --from=build /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock symfony.lock /var/www/html/
+COPY .env /var/www/html/.env
+COPY . /var/www/html/
+
+# Set environment variables for shop configuration
+ENV SHOP_NAME=Picokeebs
+ENV SHOP_DESCRIPTION="Votre boutique en ligne de claviers mécaniques et accessoires gaming"
+ENV SHOP_EMAIL=contact@picokeebs.com
+ENV SHOP_PHONE="+33 1 23 45 67 89"
+ENV SHOP_ADDRESS="Paris, France"
+
+# Compile .env for production
+RUN composer dump-env prod
+
+# Clear cache to ensure new env vars are loaded
+RUN rm -rf var/cache/prod
 
 # Set permissions
 RUN mkdir -p /var/www/html/var/cache/prod && chown -R www-data:www-data /var/www/html/var/cache/prod

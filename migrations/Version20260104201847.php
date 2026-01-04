@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20260104182736 extends AbstractMigration
+final class Version20260104201847 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -23,7 +23,7 @@ final class Version20260104182736 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE "user_id_seq" INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE "user" (id INT NOT NULL, username VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649F85E0677 ON "user" (username)');
-        $this->addSql('ALTER TABLE product ALTER updated_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');
+        $this->addSql('ALTER TABLE product ADD updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL');
         $this->addSql('COMMENT ON COLUMN product.updated_at IS \'(DC2Type:datetime_immutable)\'');
     }
 
@@ -33,7 +33,6 @@ final class Version20260104182736 extends AbstractMigration
         $this->addSql('CREATE SCHEMA public');
         $this->addSql('DROP SEQUENCE "user_id_seq" CASCADE');
         $this->addSql('DROP TABLE "user"');
-        $this->addSql('ALTER TABLE product ALTER updated_at TYPE TIMESTAMP(0) WITHOUT TIME ZONE');
-        $this->addSql('COMMENT ON COLUMN product.updated_at IS NULL');
+        $this->addSql('ALTER TABLE product DROP updated_at');
     }
 }

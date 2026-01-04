@@ -2,12 +2,113 @@
 
 {% block title %}Modifier produit - Picokeebs{% endblock %}
 
-{% block body %}
-<div class="container mt-4">
-    <h1 class="mb-4">Modifier le produit</h1>
+{% block stylesheets %}
+<style>
+    .admin-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-    <div class="card">
-        <div class="card-body">
+    .form-section {
+        background-color: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 0.75rem;
+        padding: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 0.75rem;
+    }
+
+    .form-control,
+    .form-select {
+        border: 1px solid #e8e8e8;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: var(--bs-primary);
+        box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.1);
+    }
+
+    .image-item {
+        background-color: #f9f9f9;
+        border: 1px solid #e8e8e8;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .image-preview {
+        margin-top: 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .image-preview img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 0.35rem;
+    }
+
+    .btn-add-image {
+        margin-bottom: 1rem;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e8e8e8;
+    }
+
+    .form-actions .btn {
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+    }
+
+    @media (max-width: 576px) {
+        .admin-container {
+            margin: 0;
+        }
+
+        .form-section {
+            padding: 1.5rem;
+        }
+
+        .admin-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .form-actions .btn {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <h1 class="admin-title" style="margin-top: 3rem !important; margin-bottom: 2rem !important; font-size: 2rem !important;">Modifier le produit</h1>
+
+    <div class="form-section">
             {{ form_start(form) }}
                 <div class="mb-3">
                     {{ form_label(form.name) }}
@@ -24,19 +125,62 @@
                     {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(form.price) }}
                 </div>
-                <div class="mb-3">
-                    {{ form_label(form.imageFile) }}
-                    {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(form.imageFile) }}
-                    {% if product.image %}
-                        <small class="form-text text-muted">Laissez vide pour garder l'image actuelle.</small>
-                        <img src="{{ asset('images/' ~ product.image) }}" alt="{{ product.name }}" style="width: 100px; height: 100px; object-fit: cover; margin-top: 10px;">
-                    {% endif %}
+
+<div class="form-group">
+                {{ form_label(form.images) }}
+                <div id="images-container" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+                    {% for imageForm in form.images %}
+                        <div class="image-item">
+                            {{ form_widget(imageForm) }}
+                            {% if imageForm.vars.data.imageName %}
+                                <div class="image-preview">
+                                    <img src="{{ asset('images/' ~ imageForm.vars.data.imageName) }}" alt="Current image">
+                                    <small class="text-muted">Current image</small>
+                                </div>
+                            {% endif %}
+                            <button type="button" class="btn btn-outline-danger btn-sm remove-image">
+                                <i class="fas fa-trash me-1"></i>Supprimer
+                            </button>
+                        </div>
+                    {% endfor %}
                 </div>
-                <button type="submit" class="btn btn-primary">Modifier</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm btn-add-image" id="add-image">
+                    <i class="fas fa-plus me-1"></i>Ajouter une image
+                </button>
+                {{ form_errors(form.images) }}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-2"></i>Modifier
+                </button>
                 <a href="{{ path('app_admin') }}" class="btn btn-outline-secondary">Annuler</a>
-            {{ form_end(form) }}
-        </div>
+            </div>
+        {{ form_end(form) }}
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let imageIndex = {{ form.images|length }};
+    const container = document.getElementById('images-container');
+    const prototype = container.dataset.prototype;
+    const addButton = document.getElementById('add-image');
+
+    addButton.addEventListener('click', function() {
+        const newForm = prototype.replace(/__name__/g, imageIndex);
+        const div = document.createElement('div');
+        div.className = 'image-item mb-3 p-3 border rounded';
+        div.innerHTML = newForm + '<button type="button" class="btn btn-danger btn-sm remove-image">Supprimer cette image</button>';
+        container.appendChild(div);
+        imageIndex++;
+    });
+
+    container.addEventListener('click', function(e) {
+        if (e.target.classList.contains('remove-image')) {
+            e.target.closest('.image-item').remove();
+        }
+    });
+});
+</script>
 {% endblock %}

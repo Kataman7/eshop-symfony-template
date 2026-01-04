@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'contact.title'|trans }} - {{ shop_name|default('Picokeebs') }}{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <h1 class="text-center mb-5 fw-light">{{ 'contact.title'|trans }}</h1>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">{{ 'contact.email'|trans }}</h5>
+                        <p class="card-text">{{ shop_email|default('contact@picokeebs.com') }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-phone fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">{{ 'contact.phone'|trans }}</h5>
+                        <p class="card-text">{{ shop_phone|default('+33 1 23 45 67 89') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title mb-4">{{ 'contact.send_message'|trans }}</h5>
+                <form>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">{{ 'contact.name'|trans }}</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">{{ 'contact.email_address'|trans }}</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="subject" class="form-label">{{ 'contact.subject'|trans }}</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="message" class="form-label">{{ 'contact.message'|trans }}</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">{{ 'contact.send'|trans }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -37,17 +37,28 @@ class CreateAdminUserCommand extends Command
         $username = $input->getArgument('username');
         $password = $input->getArgument('password');
 
-        $user = new User();
-        $user->setUsername($username);
-        $user->setRoles(['ROLE_ADMIN']);
+        // Check if user already exists
+        $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
 
-        $hashedPassword = $this->passwordHasher->hashPassword($user, $password);
-        $user->setPassword($hashedPassword);
+        if ($existingUser) {
+            $existingUser->setRoles(['ROLE_ADMIN']);
+            $hashedPassword = $this->passwordHasher->hashPassword($existingUser, $password);
+            $existingUser->setPassword($hashedPassword);
+            $user = $existingUser;
+            $action = 'updated';
+        } else {
+            $user = new User();
+            $user->setUsername($username);
+            $user->setRoles(['ROLE_ADMIN']);
+            $hashedPassword = $this->passwordHasher->hashPassword($user, $password);
+            $user->setPassword($hashedPassword);
+            $action = 'created';
+        }
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
-        $output->writeln('Admin user created successfully.');
+        $output->writeln("Admin user {$action} successfully.");
 
         return Command::SUCCESS;
     }

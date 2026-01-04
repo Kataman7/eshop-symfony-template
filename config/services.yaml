@@ -18,6 +18,10 @@ services:
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
+
+    # Shop configuration service
+    App\Service\ShopConfiguration:
+        public: true
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed

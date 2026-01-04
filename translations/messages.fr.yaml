@@ -44,12 +44,50 @@ checkout:
   pay_with_stripe: "Payer avec Stripe"
   email: "Adresse email"
 
-footer:
-  copyright: "Tous droits réservés"
-
 flash:
   product_added: "Produit ajouté au panier"
   product_removed: "Produit retiré du panier"
   cart_cleared: "Panier vidé"
   login_success: "Connexion réussie"
   login_error: "Erreur de connexion"
+
+contact:
+  title: "Contact"
+  email: "Email"
+  phone: "Téléphone"
+  send_message: "Envoyez-nous un message"
+  name: "Nom"
+  email_address: "Adresse email"
+  subject: "Sujet"
+  message: "Message"
+  send: "Envoyer"
+
+about:
+  title: "À propos"
+  our_story: "Notre histoire"
+  story_text: "Picokeebs est votre boutique spécialisée dans les claviers mécaniques et les accessoires gaming. Nous proposons une sélection soigneusement choisie de produits de qualité pour les passionnés de gaming et de bureautique."
+  story_text2: "Notre équipe d'experts est là pour vous conseiller et vous aider à trouver le clavier parfait pour vos besoins."
+  why_choose_us: "Pourquoi nous choisir"
+  quality: "Produits de qualité supérieure"
+  support: "Support client réactif"
+  delivery: "Livraison rapide et sécurisée"
+  security: "Paiement 100% sécurisé"
+  free_shipping: "Livraison gratuite"
+  free_shipping_desc: "Pour toutes commandes supérieures à 50€"
+  secure_payment: "Paiement sécurisé"
+  secure_payment_desc: "Vos données sont protégées"
+  support_desc: "Assistance 7j/7"
+
+footer:
+  copyright: "Tous droits réservés"
+  quick_links: "Liens rapides"
+  contact: "Contact"
+
+products:
+  # Example product translations - replace with actual product data
+  sample_keyboard:
+    name: "Clavier Mécanique"
+    description: "Clavier mécanique de haute qualité avec switches personnalisables"
+  sample_keycaps:
+    name: "Keycaps Personnalisés"
+    description: "Keycaps PBT premium avec légendes personnalisées"

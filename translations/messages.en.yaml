@@ -44,12 +44,50 @@ checkout:
   pay_with_stripe: "Pay with Stripe"
   email: "Email address"
 
-footer:
-  copyright: "All rights reserved"
-
 flash:
   product_added: "Product added to cart"
   product_removed: "Product removed from cart"
   cart_cleared: "Cart cleared"
   login_success: "Login successful"
   login_error: "Login error"
+
+contact:
+  title: "Contact"
+  email: "Email"
+  phone: "Phone"
+  send_message: "Send us a message"
+  name: "Name"
+  email_address: "Email address"
+  subject: "Subject"
+  message: "Message"
+  send: "Send"
+
+about:
+  title: "About"
+  our_story: "Our story"
+  story_text: "Picokeebs is your specialized shop for mechanical keyboards and gaming accessories. We offer a carefully selected range of quality products for gaming and office enthusiasts."
+  story_text2: "Our team of experts is here to advise you and help you find the perfect keyboard for your needs."
+  why_choose_us: "Why choose us"
+  quality: "Superior quality products"
+  support: "Responsive customer support"
+  delivery: "Fast and secure delivery"
+  security: "100% secure payment"
+  free_shipping: "Free shipping"
+  free_shipping_desc: "For all orders over €50"
+  secure_payment: "Secure payment"
+  secure_payment_desc: "Your data is protected"
+  support_desc: "7/7 assistance"
+
+footer:
+  copyright: "All rights reserved"
+  quick_links: "Quick links"
+  contact: "Contact"
+
+products:
+  # Example product translations - replace with actual product data
+  sample_keyboard:
+    name: "Mechanical Keyboard"
+    description: "High-quality mechanical keyboard with customizable switches"
+  sample_keycaps:
+    name: "Custom Keycaps"
+    description: "Premium PBT keycaps with custom legends"

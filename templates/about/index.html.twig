@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'about.title'|trans }} - {{ shop_name|default('Picokeebs') }}{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <h1 class="text-center mb-5 fw-light">{{ 'about.title'|trans }}</h1>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">{{ 'about.our_story'|trans }}</h5>
+                        <p class="card-text">{{ shop_description|default('about.story_text'|trans) }}</p>
+                        <p class="card-text">{{ 'about.story_text2'|trans }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">{{ 'about.why_choose_us'|trans }}</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ 'about.quality'|trans }}</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ 'about.support'|trans }}</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ 'about.delivery'|trans }}</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ 'about.security'|trans }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-shipping-fast fa-3x text-primary mb-3"></i>
+                        <h6 class="card-title">{{ 'about.free_shipping'|trans }}</h6>
+                        <p class="card-text small">{{ 'about.free_shipping_desc'|trans }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                        <h6 class="card-title">{{ 'about.secure_payment'|trans }}</h6>
+                        <p class="card-text small">{{ 'about.secure_payment_desc'|trans }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+                        <h6 class="card-title">{{ 'about.support'|trans }}</h6>
+                        <p class="card-text small">{{ 'about.support_desc'|trans }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -63,7 +63,7 @@ class CartController extends AbstractController
 
         $session->set('cart', $cart);
 
-        $this->addFlash('success', $this->trans('flash.product_added'));
+        $this->addFlash('success', 'Produit ajouté au panier');
 
         return $this->redirectToRoute('app_cart');
     }
@@ -75,7 +75,7 @@ class CartController extends AbstractController
         $cart = array_filter($cart, fn($item) => $item['id'] != $id);
         $session->set('cart', array_values($cart));
 
-        $this->addFlash('success', $this->trans('flash.product_removed'));
+        $this->addFlash('success', 'Produit retiré du panier');
 
         return $this->redirectToRoute('app_cart');
     }

@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\Product;
+use App\Entity\ProductImage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -26,24 +27,31 @@ class AddSampleProductsCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
+        // Check if products already exist
+        $existingProducts = $this->entityManager->getRepository(Product::class)->findAll();
+        if (count($existingProducts) > 0) {
+            $io->info('Sample products already exist. Skipping creation.');
+            return Command::SUCCESS;
+        }
+
         $products = [
             [
                 'name' => 'Clavier mécanique RGB',
                 'description' => 'Clavier mécanique avec éclairage RGB personnalisable, switches Cherry MX.',
                 'price' => '129.99',
-                'image' => 'keyboard1.jpg',
+                'images' => ['keyboard1.jpg', 'keyboard2.jpg', 'keyboard3.jpg'],
             ],
             [
                 'name' => 'Souris gaming ergonomique',
                 'description' => 'Souris gaming avec capteur optique haute précision et design ergonomique.',
                 'price' => '79.99',
-                'image' => 'mouse1.jpg',
+                'images' => ['mouse1.jpg', 'mouse2.jpg'],
             ],
             [
                 'name' => 'Écran 27" 4K',
                 'description' => 'Écran 4K UHD avec panneau IPS, taux de rafraîchissement 144Hz.',
                 'price' => '349.99',
-                'image' => 'monitor1.jpg',
+                'images' => ['monitor1.jpg', 'monitor2.jpg'],
             ],
         ];
 
@@ -52,7 +60,14 @@ class AddSampleProductsCommand extends Command
             $product->setName($productData['name']);
             $product->setDescription($productData['description']);
             $product->setPrice($productData['price']);
-            $product->setImage($productData['image']);
+
+            // Create product images
+            foreach ($productData['images'] as $index => $imageName) {
+                $productImage = new ProductImage();
+                $productImage->setImageName($imageName);
+                $productImage->setPosition($index);
+                $product->addImage($productImage);
+            }
 
             $this->entityManager->persist($product);
         }

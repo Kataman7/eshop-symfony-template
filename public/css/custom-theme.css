@@ -1,34 +1,44 @@
 /* Custom theme colors - Green theme */
 :root {
-    --bs-primary: #28a745; /* Green instead of blue */
-    --bs-primary-rgb: 40, 167, 69;
-    --bs-primary-text-emphasis: #155724;
-    --bs-primary-bg-subtle: #d4edda;
-    --bs-primary-border-subtle: #c3e6cb;
-    --bs-primary-active: #1e7e34;
-    --bs-primary-hover: #218838;
-    --bs-primary-border: #28a745;
-    --bs-primary-text: #28a745;
-    --bs-primary-hover-text: #155724;
-    --bs-primary-active-text: #155724;
-    --bs-primary-border-text: #28a745;
-    --bs-primary-hover-border: #218838;
-    --bs-primary-active-border: #1e7e34;
-    --bs-link-color: #28a745;
-    --bs-link-hover-color: #218838;
-    --bs-link-color-rgb: 40, 167, 69;
-    --bs-link-hover-color-rgb: 33, 136, 56;
+    --bs-primary: #1d9653; /* Modern green */
+    --bs-primary-rgb: 29, 150, 83;
+    --bs-primary-text-emphasis: #0d5c35;
+    --bs-primary-bg-subtle: #e8f5f0;
+    --bs-primary-border-subtle: #c3dfd4;
+    --bs-primary-active: #0d5c35;
+    --bs-primary-hover: #158645;
+    --bs-primary-border: #1d9653;
+    --bs-primary-text: #1d9653;
+    --bs-primary-hover-text: #0d5c35;
+    --bs-primary-active-text: #0d5c35;
+    --bs-primary-border-text: #1d9653;
+    --bs-primary-hover-border: #158645;
+    --bs-primary-active-border: #0d5c35;
+    --bs-link-color: #1d9653;
+    --bs-link-hover-color: #158645;
+    --bs-link-color-rgb: 29, 150, 83;
+    --bs-link-hover-color-rgb: 21, 134, 69;
+    
+    /* Typography improvements */
+    --bs-body-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --bs-body-line-height: 1.6;
+    --bs-heading-font-weight: 600;
 }
 
 /* Ensure all primary elements are green */
 .btn-primary {
     background-color: var(--bs-primary);
     border-color: var(--bs-primary);
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
     background-color: var(--bs-primary-hover);
     border-color: var(--bs-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.3);
 }
 
 .btn-primary:focus {
@@ -43,6 +53,7 @@
 .btn-outline-primary {
     color: var(--bs-primary);
     border-color: var(--bs-primary);
+    font-weight: 500;
 }
 
 .btn-outline-primary:hover {
@@ -64,6 +75,45 @@
     color: var(--bs-primary) !important;
 }
 
+/* Typography improvements */
+body {
+    font-family: var(--bs-body-font-family);
+    line-height: var(--bs-body-line-height);
+    color: #3a3a3a;
+    background-color: #f9f9f9;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--bs-heading-font-weight);
+    color: #1a1a1a;
+    letter-spacing: -0.3px;
+}
+
+h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h4, h5 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
 a:hover {
     color: var(--bs-link-hover-color);
 }
@@ -75,10 +125,30 @@ a:focus {
 /* Navbar brand */
 .navbar-brand {
     color: var(--bs-primary);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .navbar-brand:hover {
-    color: var(--bs-primary);
+    color: var(--bs-primary-hover);
+}
+
+/* Navigation */
+.navbar {
+    padding: 1rem 0;
+}
+
+.navbar-nav .nav-link {
+    margin: 0 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--bs-primary) !important;
+    border-bottom: 2px solid var(--bs-primary);
+    padding-bottom: 0.25rem;
 }
 
 /* Links in navbar */
@@ -87,9 +157,63 @@ a:focus {
 }
 
 /* Form controls focus */
+.form-control {
+    border-color: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
 .form-control:focus {
-    border-color: var(--bs-primary-border);
-    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #3a3a3a;
+    margin-bottom: 0.5rem;
+}
+
+/* Cards styling */
+.card {
+    border: 1px solid #e8e8e8;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.card:hover {
+    border-color: #ddd;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.card-body {
+    padding: 1.75rem;
+}
+
+.card-title {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+/* Footer styling */
+footer h5, footer h6 {
+    color: #ffffff;
+}
+
+footer p {
+    color: #ffffff;
+}
+
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover {
+    color: var(--bs-primary);
+}
+
+footer .text-white-50 {
+    color: #d0d0d0 !important;
 }
 
 /* Links focus */
