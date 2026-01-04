@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'cart.title'|trans }} - Picokeebs{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <h1 class="text-center mb-4 fw-light">Panier</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {% if cartItems %}
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{{ 'store.description'|trans }}</th>
+                                    <th>{{ 'cart.quantity'|trans }}</th>
+                                    <th>{{ 'store.price'|trans }}</th>
+                                    <th>{{ 'cart.total'|trans }}</th>
+                                    <th>{{ 'cart.remove'|trans }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in cartItems %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div>
+                                                <h6 class="mb-1">{{ item.product.name }}</h6>
+                                                <p class="text-muted small mb-0">{{ item.product.description|slice(0, 100) }}...</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <form action="{{ path('app_cart_update', {id: item.product.id}) }}" method="post" class="d-flex align-items-center gap-2 flex-wrap">
+                                            <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control" style="width: 70px;">
+                                            <button type="submit" class="btn btn-outline-primary btn-sm"><i class="fas fa-sync"></i> <span class="d-none d-sm-inline">{{ 'cart.update'|trans|default('Mettre à jour') }}</span></button>
+                                        </form>
+                                    </td>
+                                    <td>{{ item.product.price }}€</td>
+                                    <td>{{ item.subtotal|number_format(2, ',', ' ') }}€</td>
+                                    <td>
+                                        <a href="{{ path('app_cart_remove', {id: item.product.id}) }}" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i> <span class="d-none d-sm-inline">{{ 'cart.remove'|trans }}</span></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-end mt-4">
+                <h4 class="fw-bold">{{ 'cart.total'|trans }} : {{ total|number_format(2, ',', ' ') }}€</h4>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{{ path('app_checkout') }}" class="btn btn-success btn-lg me-2 mb-2">{{ 'cart.checkout'|trans }}</a>
+                <a href="{{ path('app_cart_clear') }}" class="btn btn-outline-secondary mb-2" onclick="return confirm('{{ 'cart.confirm_clear'|trans|default('Vider le panier ?') }}')">{{ 'cart.clear'|trans }}</a>
+            </div>
+        {% else %}
+            <div class="card shadow-sm">
+                <div class="card-body text-center py-5">
+                    <p class="text-muted mb-4">{{ 'cart.empty'|trans }}</p>
+                    <a href="{{ path('app_store') }}" class="btn btn-primary">{{ 'cart.continue_shopping'|trans }}</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

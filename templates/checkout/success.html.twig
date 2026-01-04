@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement réussi - Picokeebs{% endblock %}
+
+{% block stylesheets %}
+<style>
+    /* Minimal custom styles */
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card text-center shadow">
+            <div class="card-body py-5">
+                <i class="fas fa-check-circle text-success fa-3x mb-3"></i>
+                <h1 class="card-title text-success mb-3">Paiement réussi !</h1>
+                <p class="card-text mb-4">Merci pour votre achat. Vous recevrez un email de confirmation bientôt.</p>
+                <a href="{{ path('app_store') }}" class="btn btn-primary">Retour à la boutique</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

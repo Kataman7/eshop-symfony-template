@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }} - Picokeebs{% endblock %}
+
+{% block stylesheets %}
+<style>
+    /* Minimal custom styles */
+    .product-img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+    .product-placeholder {
+        width: 100%;
+        height: 400px;
+        background: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        border-radius: 0.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_store') }}" class="btn btn-outline-primary mb-4"><i class="fas fa-arrow-left me-2"></i>Retour à la boutique</a>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        {% if product.image %}
+        <img src="{{ asset('images/' ~ product.image) }}" alt="{{ product.name }}" class="product-img">
+        {% else %}
+        <div class="product-placeholder">Image du produit</div>
+        {% endif %}
+    </div>
+    <div class="col-lg-6">
+        <h1 class="fw-light mb-3">{{ product.name }}</h1>
+        <h3 class="text-primary mb-4">{{ product.price }}€</h3>
+        <p class="text-muted mb-4">{{ product.description }}</p>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ajouter au panier</h5>
+                <form method="post" action="{{ path('app_cart_add', {id: product.id}) }}">
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantité</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Ajouter au panier</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="{{ path('app_cart') }}" class="btn btn-outline-secondary">Voir le panier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

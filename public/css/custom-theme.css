@@ -1,0 +1,99 @@
+/* Custom theme colors - Green theme */
+:root {
+    --bs-primary: #28a745; /* Green instead of blue */
+    --bs-primary-rgb: 40, 167, 69;
+    --bs-primary-text-emphasis: #155724;
+    --bs-primary-bg-subtle: #d4edda;
+    --bs-primary-border-subtle: #c3e6cb;
+    --bs-primary-active: #1e7e34;
+    --bs-primary-hover: #218838;
+    --bs-primary-border: #28a745;
+    --bs-primary-text: #28a745;
+    --bs-primary-hover-text: #155724;
+    --bs-primary-active-text: #155724;
+    --bs-primary-border-text: #28a745;
+    --bs-primary-hover-border: #218838;
+    --bs-primary-active-border: #1e7e34;
+    --bs-link-color: #28a745;
+    --bs-link-hover-color: #218838;
+    --bs-link-color-rgb: 40, 167, 69;
+    --bs-link-hover-color-rgb: 33, 136, 56;
+}
+
+/* Ensure all primary elements are green */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--bs-primary-hover);
+    border-color: var(--bs-primary-hover);
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.5);
+}
+
+.btn-primary:active {
+    background-color: var(--bs-primary-active) !important;
+    border-color: var(--bs-primary-active) !important;
+}
+
+.btn-outline-primary {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-outline-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.btn-outline-primary:active {
+    background-color: var(--bs-primary-active) !important;
+    border-color: var(--bs-primary-active) !important;
+    color: white !important;
+}
+
+.text-primary {
+    color: var(--bs-primary) !important;
+}
+
+a:hover {
+    color: var(--bs-link-hover-color);
+}
+
+a:focus {
+    color: var(--bs-link-hover-color);
+}
+
+/* Navbar brand */
+.navbar-brand {
+    color: var(--bs-primary);
+}
+
+.navbar-brand:hover {
+    color: var(--bs-primary);
+}
+
+/* Links in navbar */
+.navbar-nav .nav-link:hover {
+    color: var(--bs-primary);
+}
+
+/* Form controls focus */
+.form-control:focus {
+    border-color: var(--bs-primary-border);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Links focus */
+a:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}

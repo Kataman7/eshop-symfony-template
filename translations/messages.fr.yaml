@@ -1,0 +1,55 @@
+# messages.fr.yaml
+store:
+  title: "Boutique"
+  add_to_cart: "Ajouter au panier"
+  price: "Prix"
+  description: "Description"
+  no_products: "Aucun produit disponible"
+  see_details: "Voir détails"
+
+cart:
+  title: "Panier"
+  empty: "Votre panier est vide"
+  continue_shopping: "Continuer les achats"
+  quantity: "Quantité"
+  total: "Total"
+  remove: "Retirer"
+  clear: "Vider le panier"
+  checkout: "Procéder au paiement"
+  update: "Mettre à jour"
+  confirm_clear: "Vider le panier ?"
+
+admin:
+  title: "Administration"
+  products: "Produits"
+  add_product: "Ajouter un produit"
+  edit_product: "Modifier le produit"
+  delete_product: "Supprimer"
+  save: "Enregistrer"
+  cancel: "Annuler"
+
+auth:
+  login: "Connexion"
+  logout: "Déconnexion"
+  username: "Nom d'utilisateur"
+  password: "Mot de passe"
+  login_button: "Se connecter"
+  invalid_credentials: "Identifiants invalides"
+
+checkout:
+  title: "Paiement"
+  back_to_cart: "Retour au panier"
+  order_summary: "Récapitulatif de la commande"
+  payment_info: "Informations de paiement"
+  pay_with_stripe: "Payer avec Stripe"
+  email: "Adresse email"
+
+footer:
+  copyright: "Tous droits réservés"
+
+flash:
+  product_added: "Produit ajouté au panier"
+  product_removed: "Produit retiré du panier"
+  cart_cleared: "Panier vidé"
+  login_success: "Connexion réussie"
+  login_error: "Erreur de connexion"

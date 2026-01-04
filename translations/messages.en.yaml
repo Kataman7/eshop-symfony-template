@@ -1,0 +1,55 @@
+# messages.en.yaml
+store:
+  title: "Store"
+  add_to_cart: "Add to cart"
+  price: "Price"
+  description: "Description"
+  no_products: "No products available"
+  see_details: "See details"
+
+cart:
+  title: "Cart"
+  empty: "Your cart is empty"
+  continue_shopping: "Continue shopping"
+  quantity: "Quantity"
+  total: "Total"
+  remove: "Remove"
+  clear: "Clear cart"
+  checkout: "Proceed to checkout"
+  update: "Update"
+  confirm_clear: "Clear cart?"
+
+admin:
+  title: "Administration"
+  products: "Products"
+  add_product: "Add product"
+  edit_product: "Edit product"
+  delete_product: "Delete"
+  save: "Save"
+  cancel: "Cancel"
+
+auth:
+  login: "Login"
+  logout: "Logout"
+  username: "Username"
+  password: "Password"
+  login_button: "Sign in"
+  invalid_credentials: "Invalid credentials"
+
+checkout:
+  title: "Checkout"
+  back_to_cart: "Back to cart"
+  order_summary: "Order summary"
+  payment_info: "Payment information"
+  pay_with_stripe: "Pay with Stripe"
+  email: "Email address"
+
+footer:
+  copyright: "All rights reserved"
+
+flash:
+  product_added: "Product added to cart"
+  product_removed: "Product removed from cart"
+  cart_cleared: "Cart cleared"
+  login_success: "Login successful"
+  login_error: "Login error"

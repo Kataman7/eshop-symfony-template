@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'checkout.title'|trans }} - Picokeebs{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_cart') }}" class="btn btn-outline-primary mb-4"><i class="fas fa-arrow-left me-2"></i>{{ 'checkout.back_to_cart'|trans }}</a>
+
+<h1 class="text-center mb-5 fw-light">{{ 'checkout.title'|trans }}</h1>
+
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endfor %}
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ 'checkout.order_summary'|trans }}</h5>
+                {% for item in cartItems %}
+                <div class="d-flex align-items-center py-3 border-bottom">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">{{ item.product.name }}</h6>
+                        <small class="text-muted">Quantité: {{ item.quantity }}</small>
+                    </div>
+                    <div class="fw-bold">{{ item.subtotal|number_format(2, ',', ' ') }}€</div>
+                </div>
+                {% endfor %}
+                <div class="text-end mt-3">
+                    <h4 class="fw-bold">Total : {{ total|number_format(2, ',', ' ') }}€</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ 'checkout.payment_info'|trans }}</h5>
+                <form method="post" action="{{ path('app_checkout_process') }}">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">{{ 'checkout.email'|trans }}</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">{{ 'checkout.pay_with_stripe'|trans }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

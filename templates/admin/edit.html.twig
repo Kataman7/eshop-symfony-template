@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier produit - Picokeebs{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mb-4">Modifier le produit</h1>
+
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(form) }}
+                <div class="mb-3">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.name) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 3}}) }}
+                    {{ form_errors(form.description) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.price) }}
+                    {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.price) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.imageFile) }}
+                    {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.imageFile) }}
+                    {% if product.image %}
+                        <small class="form-text text-muted">Laissez vide pour garder l'image actuelle.</small>
+                        <img src="{{ asset('images/' ~ product.image) }}" alt="{{ product.name }}" style="width: 100px; height: 100px; object-fit: cover; margin-top: 10px;">
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+                <a href="{{ path('app_admin') }}" class="btn btn-outline-secondary">Annuler</a>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
