@@ -1,0 +1,43 @@
+<footer class="bg-dark text-white mt-5 border-top border-dark">
+    <div class="container-lg py-5">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <h5 class="fw-bold mb-3">{{ shop_config.shopName|default(shop_name|default('Picokeebs')) }}</h5>
+                <p class="text-white-50 small">{{ shop_config.shopDescription|default(shop_description)|nl2br }}</p>
+                <p class="text-white-50 small">{{ shop_config.aboutText|default('about.story_text2'|trans)|nl2br }}</p>
+                <div class="d-flex gap-3 mt-4">
+
+                    {% if shop_config and shop_config.facebookLink %}
+                        <a href="{{ shop_config.facebookLink }}" class="text-white" style="font-size: 1.2rem;"><i class="fab fa-facebook-f"></i></a>
+                    {% endif %}
+                    {% if shop_config and shop_config.twitterLink %}
+                        <a href="{{ shop_config.twitterLink }}" class="text-white" style="font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                    {% endif %}
+                    {% if shop_config and shop_config.instagramLink %}
+                        <a href="{{ shop_config.instagramLink }}" class="text-white" style="font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h6 class="fw-bold mb-3">{{ 'footer.quick_links'|trans }}</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{{ path('app_store') }}" class="text-white-50 text-decoration-none small">{{ 'store.title'|trans }}</a></li>
+                    <li class="mb-2"><a href="{{ path('app_about') }}" class="text-white-50 text-decoration-none small">{{ 'about.title'|trans }}</a></li>
+                    <li class="mb-2"><a href="{{ path('app_contact') }}" class="text-white-50 text-decoration-none small">{{ 'contact.title'|trans }}</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <h6 class="fw-bold mb-3">{{ 'footer.contact'|trans }}</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><i class="fas fa-envelope me-2"></i><span class="text-white-50">{{ shop_config.supportEmail|default(shop_email) }}</span></li>
+                    <li class="mb-2"><i class="fas fa-phone me-2"></i><span class="text-white-50">{{ shop_config.supportPhone|default(shop_phone) }}</span></li>
+                    <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i><span class="text-white-50">{{ shop_config.address|default(shop_address) }}</span></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="my-4 border-secondary">
+        <div class="text-center text-white-50 small">
+            <p class="mb-0">&copy; {{ 'now'|date('Y') }} {{ shop_config.shopName|default(shop_name|default('Picokeebs')) }}. {{ 'footer.copyright'|trans }}.</p>
+        </div>
+    </div>
+</footer>

@@ -4,50 +4,6 @@
 
 {% block stylesheets %}
 <style>
-    .admin-container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .form-section {
-        background-color: #fff;
-        border: 1px solid #e8e8e8;
-        border-radius: 0.75rem;
-        padding: 2rem;
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    .form-label {
-        font-weight: 600;
-        color: #1a1a1a;
-        margin-bottom: 0.75rem;
-    }
-
-    .form-control,
-    .form-select {
-        border: 1px solid #e8e8e8;
-        border-radius: 0.5rem;
-        padding: 0.75rem 1rem;
-        transition: all 0.3s ease;
-    }
-
-    .form-control:focus,
-    .form-select:focus {
-        border-color: var(--bs-primary);
-        box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.1);
-    }
-
-    .image-item {
-        background-color: #f9f9f9;
-        border: 1px solid #e8e8e8;
-        border-radius: 0.5rem;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
     .image-preview {
         margin-top: 1rem;
         display: flex;
@@ -64,42 +20,6 @@
 
     .btn-add-image {
         margin-bottom: 1rem;
-    }
-
-    .form-actions {
-        display: flex;
-        gap: 1rem;
-        margin-top: 2rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid #e8e8e8;
-    }
-
-    .form-actions .btn {
-        padding: 0.75rem 1.5rem;
-        font-weight: 600;
-    }
-
-    @media (max-width: 576px) {
-        .admin-container {
-            margin: 0;
-        }
-
-        .form-section {
-            padding: 1.5rem;
-        }
-
-        .admin-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-actions {
-            flex-direction: column;
-        }
-
-        .form-actions .btn {
-            width: 100%;
-        }
     }
 </style>
 {% endblock %}

@@ -3,214 +3,6 @@
 {% block title %}{{ product.name }} - Picokeebs{% endblock %}
 
 {% block stylesheets %}
-<style>
-    .product-gallery {
-        position: relative;
-        margin-bottom: 2rem;
-    }
-
-    .product-img {
-        width: 100%;
-        height: 500px;
-        object-fit: cover;
-        border-radius: 0.75rem;
-        background: #f5f5f5;
-        display: block;
-    }
-
-    .gallery-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 2rem;
-    }
-
-    .carousel-indicators {
-        bottom: -50px;
-    }
-
-    .carousel-indicators button {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        opacity: 0.5;
-        transition: all 0.3s ease;
-    }
-
-    .carousel-indicators button.active {
-        opacity: 1;
-    }
-
-    .carousel-control-prev,
-    .carousel-control-next {
-        width: 5%;
-        height: 50px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: rgba(0, 0, 0, 0.3);
-        border-radius: 50%;
-        padding: 0.5rem;
-    }
-
-    .product-details {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .product-info {
-        order: 2;
-    }
-
-    .product-title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #1a1a1a;
-        margin-bottom: 1rem;
-        letter-spacing: -0.5px;
-    }
-
-    .product-price {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--bs-primary);
-        margin-bottom: 1.5rem;
-    }
-
-    .product-description {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: #3a3a3a;
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 2px solid #f0f0f0;
-    }
-
-    .add-to-cart-section {
-        order: 1;
-        background-color: #f9f9f9;
-        border-radius: 0.75rem;
-        padding: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .add-to-cart-section h4 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        color: #1a1a1a;
-    }
-
-    .quantity-control {
-        display: flex;
-        align-items: flex-end;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-    }
-
-    .quantity-group {
-        flex-grow: 1;
-        min-width: 150px;
-    }
-
-    .quantity-group label {
-        font-weight: 600;
-        font-size: 0.95rem;
-        margin-bottom: 0.75rem;
-        display: block;
-    }
-
-    .quantity-group input {
-        max-width: 120px;
-    }
-
-    .btn-add-cart {
-        padding: 0.75rem 2rem;
-        font-size: 1.05rem;
-        font-weight: 600;
-        white-space: nowrap;
-    }
-
-    .cart-links {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1.5rem;
-    }
-
-    .cart-links a {
-        flex: 1;
-        text-align: center;
-    }
-
-    @media (max-width: 992px) {
-        .product-img {
-            height: 400px;
-        }
-
-        .product-title {
-            font-size: 1.75rem;
-        }
-
-        .product-price {
-            font-size: 2rem;
-        }
-
-        .quantity-control {
-            flex-direction: column;
-        }
-
-        .quantity-group {
-            width: 100%;
-        }
-
-        .btn-add-cart {
-            width: 100%;
-        }
-
-        .cart-links {
-            flex-direction: column;
-        }
-
-        .cart-links a {
-            flex: none;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .product-img {
-            height: 300px;
-        }
-
-        .product-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .product-price {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .product-description {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-
-        .add-to-cart-section {
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .add-to-cart-section h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-    }
-</style>
 {% endblock %}
 
 {% block body %}
@@ -223,7 +15,7 @@
                 <div class="carousel-inner">
                     {% for image in product.images %}
                     <div class="carousel-item {% if loop.first %}active{% endif %}">
-                        <img src="{{ asset('images/' ~ image.imageName) }}" alt="{{ product.name }}" class="product-img d-block w-100">
+                        <img src="{{ asset('images/' ~ image.imageName) }}" alt="{{ product.name }}" class="product-img-large d-block w-100">
                     </div>
                     {% endfor %}
                 </div>
@@ -242,44 +34,55 @@
                 {% endif %}
             </div>
             {% else %}
-            <div class="product-img" style="background: #f5f5f5; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; color: #999;">
+            <div class="product-img-large" style="background: #f5f5f5; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; color: #999;">
                 No image
             </div>
             {% endif %}
         </div>
+    </div>
 
-        <!-- Add to Cart Form UNDER IMAGE -->
-        <div class="add-to-cart-section">
-            <h4>{{ 'store.add_to_cart'|trans }}</h4>
-            <form method="post" action="{{ path('app_cart_add', {id: product.id}) }}" class="quantity-control">
-                <div class="quantity-group">
-                    <label for="quantity" class="form-label">{{ 'cart.quantity'|trans }}</label>
-                    <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" max="99">
+    <!-- Product Details & Add to Cart -->
+    <div class="col-lg-6">
+        <div class="product-details">
+            <h1 class="product-title">{{ product.name }}</h1>
+            <div class="product-price-large mb-4">{{ product.price }}€</div>
+            
+            <div class="add-to-cart-section p-4 bg-light rounded-3 mt-4">
+                <h4 class="mb-3">{{ 'store.add_to_cart'|trans }}</h4>
+                <form method="post" action="{{ path('app_cart_add', {id: product.id}) }}" class="quantity-control">
+                    <div class="d-flex align-items-end gap-3 mb-3">
+                        <div class="quantity-group" style="max-width: 100px;">
+                            <label for="quantity" class="form-label small text-muted mb-1">{{ 'cart.quantity'|trans }}</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" max="99">
+                        </div>
+                        <button type="submit" class="btn btn-primary d-flex align-items-center gap-2">
+                            <i class="fas fa-cart-plus"></i>
+                            <span>{{ 'store.add_to_cart'|trans }}</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="cart-links mt-2">
+                    <a href="{{ path('app_cart') }}" class="text-decoration-none text-muted small">
+                        <i class="fas fa-shopping-cart me-1"></i>{{ 'cart.title'|trans }}
+                    </a>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-add-cart">
-                    <i class="fas fa-cart-plus me-2"></i>{{ 'store.add_to_cart'|trans }}
-                </button>
-            </form>
-            <div class="cart-links">
-                <a href="{{ path('app_cart') }}" class="btn btn-outline-secondary">
-                    <i class="fas fa-shopping-cart me-2"></i>{{ 'cart.title'|trans }}
-                </a>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Product Details -->
-    <div class="col-lg-6">
-        <div class="product-details">
-            <!-- Product Info -->
-            <div class="product-info">
-                <h1 class="product-title">{{ product.name }}</h1>
-                <div class="product-price">{{ product.price }}€</div>
-                
-                {% if product.description %}
-                <p class="product-description">{{ product.description }}</p>
-                {% endif %}
+<!-- Product Description Section -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="product-description-section pt-5 border-top">
+            <h3 class="mb-4">Description</h3>
+            {% if product.description %}
+            <div class="product-description text-muted" style="font-size: 1.1rem; line-height: 1.8;">
+                {{ product.description|markdown_to_html }}
             </div>
+            {% else %}
+            <p class="text-muted">{{ 'store.no_description'|trans|default('No description available.') }}</p>
+            {% endif %}
         </div>
     </div>
 </div>

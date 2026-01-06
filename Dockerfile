@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libicu-dev \
     netcat-openbsd \
+    git \
+    zip \
+    unzip \
     && docker-php-ext-install pdo_pgsql intl
 
 # Enable Apache mod_rewrite
@@ -37,7 +40,7 @@ ENV SHOP_PHONE="+33 1 23 45 67 89"
 ENV SHOP_ADDRESS="Paris, France"
 
 # Compile .env for production
-RUN composer dump-env prod
+# RUN composer dump-env prod
 
 # Clear cache to ensure new env vars are loaded
 RUN rm -rf var/cache/prod

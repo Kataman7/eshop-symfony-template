@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shop Configuration{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <div class="admin-header">
+        <h1 class="admin-title mb-0">Shop Configuration</h1>
+        <a href="{{ path('app_admin') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+        </a>
+    </div>
+
+    <div class="form-section">
+        {{ form_start(form) }}
+            <div class="row g-3">
+                <div class="col-12">
+                    <h5 class="mb-3 text-primary border-bottom pb-2">General Information</h5>
+                </div>
+                <div class="col-md-12">
+                    {{ form_row(form.shopName) }}
+                </div>
+                <div class="col-md-12">
+                    {{ form_row(form.shopDescription) }}
+                </div>
+                <div class="col-md-12">
+                    {{ form_row(form.bannerMessage, {'help': 'This message will appear at the very top of every page if set.'}) }}
+                </div>
+
+                <div class="col-12 mt-4">
+                    <h5 class="mb-3 text-primary border-bottom pb-2">Contact Information</h5>
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.supportEmail) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.supportPhone) }}
+                </div>
+                <div class="col-md-12">
+                    {{ form_row(form.address) }}
+                </div>
+                <div class="col-md-12">
+                    {{ form_row(form.aboutText) }}
+                </div>
+
+                <div class="col-12 mt-4">
+                    <h5 class="mb-3 text-primary border-bottom pb-2">Social Media</h5>
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(form.instagramLink) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(form.twitterLink) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(form.facebookLink) }}
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary btn-lg">
+                    <i class="fas fa-save me-2"></i>Save Configuration
+                </button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,11 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        shop_name: '%env(SHOP_NAME)%'
+        shop_description: '%env(SHOP_DESCRIPTION)%'
+        shop_email: '%env(SHOP_EMAIL)%'
+        shop_phone: '%env(SHOP_PHONE)%'
+        shop_address: '%env(SHOP_ADDRESS)%'
 
 when@test:
     twig:

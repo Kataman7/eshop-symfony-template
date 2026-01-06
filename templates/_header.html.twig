@@ -1,0 +1,28 @@
+{% if shop_config and shop_config.bannerMessage %}
+    <div class="bg-primary text-white text-center py-2 small fw-bold">
+        {{ shop_config.bannerMessage }}
+    </div>
+{% endif %}
+<header class="bg-white py-3 border-bottom">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-lg">
+            <a class="navbar-brand fw-bold" href="{{ path('app_store') }}">{{ shop_config.shopName|default(shop_name|default('Picokeebs')) }}</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="{{ path('app_store') }}"><i class="fas fa-store me-2"></i>{{ 'store.title'|trans }}</a>
+                    <a class="nav-link" href="{{ path('app_cart') }}"><i class="fas fa-shopping-cart me-2"></i>{{ 'cart.title'|trans }}</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="nav-link" href="{{ path('app_admin') }}"><i class="fas fa-cog me-2"></i>Admin</a>
+                        <a class="nav-link" href="{{ path('app_logout') }}">{{ 'auth.logout'|trans }}</a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

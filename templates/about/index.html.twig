@@ -1,19 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'about.title'|trans }} - {{ shop_name|default('Picokeebs') }}{% endblock %}
+{% block title %}{{ 'about.title'|trans }} - {{ shop_name }}{% endblock %}
 
 {% block body %}
+<div class="page-header text-center">
+    <h1 class="page-title">{{ 'about.title'|trans }}</h1>
+</div>
+
 <div class="row justify-content-center">
     <div class="col-lg-10">
-        <h1 class="text-center mb-5 fw-light">{{ 'about.title'|trans }}</h1>
 
         <div class="row g-4">
             <div class="col-lg-6">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title mb-3">{{ 'about.our_story'|trans }}</h5>
-                        <p class="card-text">{{ shop_description|default('about.story_text'|trans) }}</p>
-                        <p class="card-text">{{ 'about.story_text2'|trans }}</p>
+                        <p class="card-text">{{ shop_description }}</p>
+                        <p class="card-text">{{ shop_config.aboutText|default('about.story_text2'|trans)|nl2br }}</p>
                     </div>
                 </div>
             </div>

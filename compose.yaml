@@ -8,7 +8,7 @@ services:
       - database
     environment:
       DATABASE_URL: postgresql://app:!ChangeMe!@database:5432/app?serverVersion=16&charset=utf8
-      APP_ENV: prod
+      APP_ENV: dev
       APP_SECRET: ${APP_SECRET}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
       SHOP_NAME: ${SHOP_NAME:-Picokeebs}
@@ -19,9 +19,10 @@ services:
     volumes:
       - .:/var/www/html
       - ./public:/var/www/html/public
+      - ./docker/php/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini
     ports:
       - "8000:80"
-    command: ["sh", "-c", "while ! nc -z database 5432; do sleep 1; done && php bin/console doctrine:migrations:migrate --no-interaction && php bin/console cache:warmup && apache2-foreground"]
+    command: ["sh", "-c", "mkdir -p var/cache var/log var/sessions && chmod -R 777 var && while ! nc -z database 5432; do sleep 1; done && php bin/console doctrine:migrations:migrate --no-interaction && rm -rf var/cache/* && php bin/console cache:warmup && apache2-foreground"]
 
 ###> doctrine/doctrine-bundle ###
   database:
